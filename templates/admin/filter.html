@@ -1,0 +1,14 @@
+{% load i18n %}
+<h3>
+{% if title.sort %}
+  {% blocktrans with title.sort as filter_title %} By {{ filter_title }} {% endblocktrans %}
+{% else %}
+  {% blocktrans with title as filter_title %} By {{ filter_title }} {% endblocktrans %}
+{% endif %}
+</h3>
+<ul>
+{% for choice in choices %}
+    <li{% if choice.selected %} class="selected"{% endif %}>
+    <a href="{{ choice.query_string|iriencode }}">{{ choice.display }}</a></li>
+{% endfor %}
+</ul>
